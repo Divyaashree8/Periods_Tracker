@@ -16,6 +16,24 @@ def get_valid_number(prompt):
 def save_to_file(data):
     with open("history.txt","a") as file:
         file.write(data+"\n")
+def view_history():
+    print("\n Cycle History")
+    try:
+        with open("history.txt","r") as file:
+            content= file.read()
+            if content.strip()=="":
+                print("History is empty")
+            else:
+                print(content)
+    except FileNotFoundError:
+        print("No history found")
+def clear_history():
+    try:
+        open("history.txt","w").close()
+        print("History cleared")
+    except Exception as e:
+        print("Error clearing history",e)
+
 def main():
     print("\n Period Tracker")
     while True:
@@ -31,9 +49,16 @@ last period:{last_date.date()}
 Next period:{next_period.date()}
 ovulation:{ovulation.date()}
 """
-
         print(result)
         save_to_file(result)
+        print("1.view\n2.clear History\n3.dont wanna track")
+        hist= input("Choose an option:")
+        if hist=="1":
+            view_history()
+        elif hist=="2":
+            clear_history()
+        elif hist=="3":
+            print("Alright! Here we go.")
         choice=input("Do you want to track again?(Y/N):").lower()
         if choice!='y':
             print("Exiting.....Stay Healthy!")
