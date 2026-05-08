@@ -48,6 +48,8 @@ def main():
 last period:{last_date.date()}
 Next period:{next_period.date()}
 ovulation:{ovulation.date()}
+Above date is an estimation periods dates can vary sometimes due various factors
+so don't worry and STAY HEALTHY!
 """
         print(result)
         save_to_file(result)
